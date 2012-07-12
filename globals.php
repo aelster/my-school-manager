@@ -1,5 +1,6 @@
 <?php
 
+global $gAction;
 global $gDebug;
 global $gFunction;
 global $gLogoImage;

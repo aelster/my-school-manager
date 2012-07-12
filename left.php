@@ -7,5 +7,9 @@
 END;
    }
    echo "<hr>";
+   
+   SessionStuff('start');
+   
+   UserManager('login');
    echo "left panel";
 ?>
