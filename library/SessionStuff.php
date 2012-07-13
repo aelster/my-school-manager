@@ -2,8 +2,8 @@
 function SessionStuff( $cmd )
 {
 	include( "globals.php" );
-	if( $GLOBALS['gTrace'] ) {
-		$GLOBALS['gFunction'][] = "SessionStuff($cmd)";
+	if( $gTrace ) {
+		$gFunction[] = "SessionStuff($cmd)";
 		Logger();
 	}
 	
@@ -12,9 +12,9 @@ function SessionStuff( $cmd )
 		case( 'start' ):
 			session_start();
 			if( empty( $_SESSION['userid'] ) ) {
-				if( $GLOBALS['gTrace'] ) Logger( "Starting new session" );
+				if( $gTrace ) Logger( "Starting new session" );
 			} else {
-				if( $GLOBALS['gTrace'] ) Logger( "Using existing session" );
+				if( $gTrace ) Logger( "Using existing session" );
 				UserManager( 'load', $_SESSION['userid'] );
 			}
 			break;
@@ -64,6 +64,6 @@ function SessionStuff( $cmd )
 			$gUserVerified = 0;
 			break;
 	}
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction']);
+	if( $gTrace ) array_pop( $gFunction);
 }
 ?>

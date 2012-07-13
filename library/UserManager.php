@@ -1,11 +1,11 @@
 <?php
 function UserManager() {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	
 	$area = func_get_arg( 0 );
 	
-	if( $GLOBALS['gTrace'] ) {
-		$GLOBALS['gFunction'][] = "UserManager($area)";
+	if( $gTrace ) {
+		$gFunction[] = "UserManager($area)";
 		Logger();
 	}
 	
@@ -75,13 +75,13 @@ function UserManager() {
 			break;
 	}
 	
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerAdd()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		$GLOBALS[ 'gFunction' ][] = "UserManagerAdd()";
 		Logger();
 	}
@@ -111,13 +111,13 @@ function UserManagerAdd()
 		DoQuery( $query );
 	}
 	
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerActivate( $new_val )
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerActivate( $new_val )" );
 		Logger();
 	}
@@ -137,12 +137,12 @@ function UserManagerActivate( $new_val )
 	$query = join( ",", $text );
 	DoQuery( $query );
 
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerAuthorized( $privilege )
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	include( "globals.php" );
 	if( $gTrace ) {
 		$gFunction[] = "CommonV2:UserManagerAuthorized($privilege)";
@@ -158,7 +158,7 @@ function UserManagerAuthorized( $privilege )
 
 function UserManagerControl()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) { 
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerControl()" );
 		Logger();
@@ -183,13 +183,13 @@ function UserManagerControl()
 
 	$_POST[ 'btn_action' ] = NULL;
 	
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerDelete()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerDelete()" );
 		Logger();
 	}
@@ -213,12 +213,12 @@ function UserManagerDelete()
 	DoQuery( "delete from access where userid = '$id'" );
 	DoQuery( "delete from grades where userid = '$id'" );
 	
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS[ 'gFunction' ] );
+	if( $gTrace ) array_pop( $GLOBALS[ 'gFunction' ] );
 }
 
 function UserManagerDisplay()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) { 
 		array_push( $GLOBALS[ 'gFunction' ], "CommonV2:UserManagerDisplay()" );
 		Logger();
@@ -359,13 +359,13 @@ function UserManagerDisplay()
 	echo "</tr>";
 	
 	echo "</div>";
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerEdit()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerEdit()" );
 		Logger();
 	}
@@ -400,13 +400,13 @@ function UserManagerEdit()
 	echo "<input type=submit name=action value=Back>";
 	echo "<input type=button onclick=\"setValue( 'id', '$id'); setValue( 'btn_action', 'Update' ); addAction('Update');\" value=Update>";
 		
-	if( $GLOBALS['gTrace']) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace) array_pop( $gFunction );
 
 }
 
 function UserManagerReset()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $GLOBALS['gTrace' ] ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerReset" );
 		Logger();
@@ -449,14 +449,14 @@ function UserManagerReset()
 	if( e ) e.focus();
 </script>
 <?php
-	if( $GLOBALS['gTrace' ] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerInactive()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) {
-		array_push( $GLOBALS[ 'gFunction' ], "UserManagerInactive()" );
+		$gFunction[] = "UserManagerInactive()";
 		Logger();
 	}
 	
@@ -480,7 +480,7 @@ function UserManagerInactive()
 
 function UserManagerInit()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerInit()" );
 		Logger();
@@ -499,13 +499,13 @@ function UserManagerInit()
 		$gAccessLevelEnabled[ $row[ 'level' ] ] = $row[ 'enabled' ];
 		array_push( $gAccessLevels, $row[ 'name' ] );
 	}
-	if( $GLOBALS['gTrace']) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace) array_pop( $gFunction );
 }
 
 function UserManagerLoad( $userid )
 {
-	include( "commonv2_globals.php" );	
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );	
+	if( $gTrace ) {
 		$GLOBALS[ 'gFunction' ][] = "UserManagerLoad()";
 		Logger();
 	}
@@ -513,7 +513,7 @@ function UserManagerLoad( $userid )
 	$query = sprintf( "show tables from %s like 'access'", $GLOBALS['mysql_dbname'] );
 	DoQuery( $query );
 	if( $local_numrows == 0 ) {
-		if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+		if( $gTrace ) array_pop( $gFunction );
 		return;
 	}
 	
@@ -537,13 +537,13 @@ function UserManagerLoad( $userid )
 	$GLOBALS['gEnabled'] = $enabled;
 	$_SESSION['username'] = $row['username'];
 
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerLogin()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerLogin()" );
 		Logger();
 	}
@@ -596,8 +596,8 @@ function UserManagerLogin()
 }
 
 function UserManagerLogout() {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerLogout()" );
 		Logger();
 	}
@@ -609,8 +609,8 @@ function UserManagerLogout() {
 }
 
 function UserManagerPassword() {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		array_push( $GLOBALS[ 'gFunction' ], "UserManagerPassword()" );
 		Logger();
 	}
@@ -619,7 +619,8 @@ function UserManagerPassword() {
 	DoQuery( "select username from users where userid = '$id'" );
 	list( $username ) = mysql_fetch_array( $local_result );
 	$disabled = empty( $username ) ? "" : "disabled";
-?>
+
+	echo <<<END
 <div align=center>
 <div style="width:5in">
 <br>
@@ -631,14 +632,14 @@ The UPDATE button will be activated once your password, entered twice, has been 
 <br><br>
 </div>
 <input type=hidden name=from value=UserManagerPassword>
-<input type=hidden name=userid id=userid value=<?php echo $id ?>>
-<input type=hidden name=id id=id value=<?php echo $id ?>>
+<input type=hidden name=userid id=userid value=$id>
+<input type=hidden name=id id=id value=$id>
 <input type=hidden name=update_pass value=1>
 <input type=hidden name=nobypass value=1>
 <table class=norm>
 <tr>
 	<th class=norm>Username</th>
-	<td><input type=text name=username id=username size=20 <?php echo "value=\"$username\" $disabled >"?></td>
+	<td><input type=text name=username id=username size=20 value="$username" $disabled></td>
 </tr>
 <tr>
 	<th class=norm>Password
@@ -652,7 +653,8 @@ The UPDATE button will be activated once your password, entered twice, has been 
 <br>
 <a id=pwdval>&nbsp;</a>
 <br><br>
-<?php
+END;
+
 	$acts = array();
 	$acts[] = "mungepwd()";
 	$acts[] = "setValue('area','new_pass')";
@@ -661,15 +663,15 @@ The UPDATE button will be activated once your password, entered twice, has been 
 ?>
 <input type=button id=userSettingsUpdate name=userSettingsUpdate disabled <?php echo $click ?> value=Update></th>
 <?php
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 	exit;
 }
 
 function UserManagerPrivileges()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
-		array_push( $GLOBALS['gFunction'], "UserManagerPrivileges()" );
+	include( "globals.php" );
+	if( $gTrace ) {
+		array_push( $gFunction, "UserManagerPrivileges()" );
 		Logger();
 	}
 ?>
@@ -736,12 +738,12 @@ function UserManagerPrivileges()
 	echo "</tr>";
 	echo "</table>";
 	echo "</div>";
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerReport()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) { echo "Func: UserManagerReport<br>"; }
 	array_push( $GLOBALS[ 'gFunction' ], "UserManagerReport" );
 
@@ -825,9 +827,9 @@ function UserManagerReport()
 
 function UserManagerResend()
 {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
-		array_push( $GLOBALS['gFunction'], "UserManagerResend()" );
+	include( "globals.php" );
+	if( $gTrace ) {
+		array_push( $gFunction, "UserManagerResend()" );
 		Logger();
 	}
 	
@@ -890,12 +892,12 @@ function UserManagerResend()
 	echo "<input type=hidden name=from value=UserManagerResend>";
 	echo "<input type=submit name=action value=Continue>";
 
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 function UserManagerSettings()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	if( $gTrace ) { echo "Func: UserManagerSettings<br>"; }
 	array_push( $GLOBALS[ 'gFunction' ], "UserManagerSettings" );
 
@@ -1038,9 +1040,9 @@ function UserManagerSettings()
 
 function UserManagerUpdate()
 {
-	include( "commonv2_globals.php" );
+	include( "globals.php" );
 	
-	if( $GLOBALS['gTrace'] ) {
+	if( $gTrace ) {
 		if( func_num_args() > 0 ) {
 			$args = func_get_args();
 			$vargs = join( ',', $args );
@@ -1297,7 +1299,7 @@ function UserManagerUpdate()
 		}
 	}
 	
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS[ 'gFunction' ] );
+	if( $gTrace ) array_pop( $GLOBALS[ 'gFunction' ] );
 	return;
 	
 	DoQuery( "select * from users where userid= '$id'" );
@@ -1352,12 +1354,12 @@ function UserManagerUpdate()
 	} elseif( $GLOBALS['gFrom'] == 'UserEdit' ) {
 		$_POST['btn_action'] = NULL;
 	}
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS[ 'gFunction' ] );
+	if( $gTrace ) array_pop( $GLOBALS[ 'gFunction' ] );
 }
 
 function UserManagerVerify() {
-	include( "commonv2_globals.php" );
-	if( $GLOBALS['gTrace'] ) {
+	include( "globals.php" );
+	if( $gTrace ) {
 		if( func_num_args() > 0 ) {
 			$args = func_get_args();
 			$vargs = join( ',', $args );
@@ -1375,14 +1377,14 @@ function UserManagerVerify() {
 		if( empty( $_POST[ 'username' ] ) && $_POST['bypass'] != 1 )
 		{
 			$GLOBALS['gMessage1'] = "&nbsp;** Please enter your username";
-			if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+			if( $gTrace ) array_pop( $gFunction );
 			return;
 		}
 		
 		if( !isset( $_POST[ 'userpass' ] ) || $_POST['userpass'] == "empty" )
 		{
 			$GLOBALS['gMessage2']= "&nbsp;** Please enter your password";
-			if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+			if( $gTrace ) array_pop( $gFunction );
 			return;
 		}
 		
@@ -1460,7 +1462,7 @@ function UserManagerVerify() {
 	} else {
 		$GLOBALS[ 'gAction' ]  = empty( $gActive ) ? "Inactive" : "Welcome";
 	}
-	if( $GLOBALS['gTrace'] ) array_pop( $GLOBALS['gFunction'] );
+	if( $gTrace ) array_pop( $gFunction );
 }
 
 ?>

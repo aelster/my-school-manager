@@ -12,7 +12,7 @@ function DisplayMain() {
    <form name=fMain method="post" action="$gSourceCode">
 END;
 
-   $hidden_fields = array( 'action', 'area', 'authid', 'fields', 'func', 'gid', 'id', 'monthid', 'next', 'sid' );
+   $hidden_fields = array( 'action' );
    foreach( $hidden_fields as $field ) {
       printf( "<input type=hidden name=%s id=%s>", $field, $field );
    }
