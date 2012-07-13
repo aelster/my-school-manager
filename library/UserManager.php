@@ -143,9 +143,8 @@ function UserManagerActivate( $new_val )
 function UserManagerAuthorized( $privilege )
 {
 	include( "globals.php" );
-	include( "globals.php" );
 	if( $gTrace ) {
-		$gFunction[] = "CommonV2:UserManagerAuthorized($privilege)";
+		$gFunction[] = "UserManagerAuthorized($privilege)";
 		Logger();
 	}
 	$level = $GLOBALS['gAccessLevel'];
