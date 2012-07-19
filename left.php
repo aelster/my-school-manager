@@ -1,6 +1,4 @@
-<?php
-   include('globals.php');
-   
+<?php   
    if( $gLogoImage ) {
       echo <<< END
 <a href="$gLogoURL"><img src="/images/$gLogoImage"></a>
@@ -10,6 +8,9 @@ END;
    
    SessionStuff('start');
    
-   UserManager('login');
-   echo "left panel";
+   if( empty( $_SESSION['userid'] ) ) {
+      echo "Please log in";
+   }
+   echo "<br>Left panel";
+
 ?>

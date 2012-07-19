@@ -18,10 +18,18 @@ $gDb = OpenDb();
 $test = isset( $_REQUEST['bozo'] ) ? 1 : 0;
 $gDebug = $test;
 $gTrace = $test;
+$gFunction = array('index.php');
 
 if( empty($gManager) ) $gManager = 0;
 
 WriteHeader();
+
+if( $gDebug ) {
+   echo <<<END
+<script type="text/javascript">MyCreateDebugWindow()</script>
+END;
+}
+
 DisplayMain();
 WriteFooter();
 

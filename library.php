@@ -6,7 +6,27 @@ function DisplayMain() {
       $gFunction[] = "DisplayMain()";
       Logger();
    }
-   echo "gManager: $gManager<br>";
+   
+   echo <<<END
+<div id=page>
+   <form name=fMain method="post" action="$gSourceCode">
+END;
+
+   $hidden_fields = array( 'action' );
+   foreach( $hidden_fields as $field ) {
+      printf( "<input type=hidden name=%s id=%s>", $field, $field );
+   }
+   
+   echo "<div id=left>";
+   include( 'left.php' );
+   echo "</div>";
+   
+   echo "<div id=right>";
+   include( 'right.php' );
+   echo "</div>";
+   
+   echo "</div>"; # page
+
    if($gTrace) array_pop($gFunction);
 }
 
@@ -47,6 +67,7 @@ END;
    $scripts = array();
    $scripts[] = "/overlib/overlib.js";
    $scripts[] = "/overlib/overlib_hideform.js";
+   $scripts[] = "/scripts/MyUtilities.js";
    foreach ( $scripts as $file ) {
       echo sprintf( "<script type=\"text/javascript\" src=\"%s\"></script>\n", $file );
    }
@@ -57,13 +78,7 @@ END;
 <body>
 END;
 
-   if( $gTrace ) {
-      $gFunction[] = "WriteHeader()";
-      Logger();
-   }
    AddOverlib();
-
-   if( $gTrace ) array_pop( $gFunction );
 }
 
 ?>

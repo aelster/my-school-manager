@@ -15,6 +15,16 @@ global $gMysqlDbname;
 global $gMysqlSuffix;
 
 #=================================================
+# Control DB variables
+#=================================================
+global $gAccessNameToId;
+global $gAccessNameToLevel;
+global $gAccessNameEnabled;
+global $gAccessLevelEnabled;
+global $gAccessLevels;
+
+#=================================================
+#=================================================
 global $gAction;
 global $gDebug;
 global $gFunction;
