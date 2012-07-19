@@ -1,15 +1,25 @@
 <?php
-include( "globals.php" );
-require_once( "MyLoader.php" );
+include('globals.php');
+include('library.php');
 
-SiteLoad( "library" );
+require_once('SiteLoader.php');
 
-include( 'local-my-school-manager.php' );
+SiteLoader('Common');
+
+require('local-control.php');
+$gDbControl = OpenDb();
+
+require('local-eedge.php');
+$gDbEEdge = OpenDb();
+
+require( 'local-my-school-manager.php' );
 $gDb = OpenDb();
 
 $test = isset( $_REQUEST['bozo'] ) ? 1 : 0;
 $gDebug = $test;
 $gTrace = $test;
+
+if( empty($gManager) ) $gManager = 0;
 
 WriteHeader();
 DisplayMain();
