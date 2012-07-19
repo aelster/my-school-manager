@@ -14,7 +14,7 @@ END;
 
    $hidden_fields = array( 'action' );
    foreach( $hidden_fields as $field ) {
-      printf( "<input type=hidden name=%s id=%s>", $field, $field );
+      printf( "<input type=hidden name=%s id=%s>\n", $field, $field );
    }
    
    echo "<div id=left>";
@@ -28,6 +28,20 @@ END;
    echo "</div>"; # page
 
    if($gTrace) array_pop($gFunction);
+}
+
+function LocalInit() {
+   include('globals.php');
+   
+   $gSourceCode = str_replace( "index.php", "", $_SERVER["PHP_SELF"] );
+   $qs = preg_split( '/&/', $_SERVER['QUERY_STRING'] );
+   $nqs = array();
+   foreach( $qs as $q ) {
+      if( ! preg_match( '/^pwd/', $q ) ) {
+         if( ! empty( $q ) ) $nqs[] = $q;
+      }
+   }
+   if( count( $nqs ) ) $gSourceCode .= '?' . join('&',$nqs );
 }
 
 function WriteFooter() {
@@ -68,12 +82,13 @@ END;
    $scripts[] = "/overlib/overlib.js";
    $scripts[] = "/overlib/overlib_hideform.js";
    $scripts[] = "/scripts/MyUtilities.js";
+   $scripts[] = "/scripts/sha256.js";
    foreach ( $scripts as $file ) {
       echo sprintf( "<script type=\"text/javascript\" src=\"%s\"></script>\n", $file );
    }
 
    echo <<<END
-<link type="text/css" href="styles.css" rel="stylesheet">
+<link type="text/css" href="/css/parent_portal.css" rel="stylesheet">
 </head>
 <body>
 END;

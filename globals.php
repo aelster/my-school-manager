@@ -24,6 +24,14 @@ global $gAccessLevelEnabled;
 global $gAccessLevels;
 
 #=================================================
+# Common Library variables
+#=================================================
+global $gMessage1;
+global $gMessage2;
+global $gUserVerified;
+
+#=================================================
+# General variables
 #=================================================
 global $gAction;
 global $gDebug;

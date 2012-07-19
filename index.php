@@ -1,4 +1,6 @@
 <?php
+require( "lib/swift_required.php" );
+
 include('globals.php');
 include('library.php');
 
@@ -22,12 +24,23 @@ $gFunction = array('index.php');
 
 if( empty($gManager) ) $gManager = 0;
 
+LocalInit();
+
 WriteHeader();
 
 if( $gDebug ) {
    echo <<<END
 <script type="text/javascript">MyCreateDebugWindow()</script>
 END;
+   DumpPostVars();
+}
+
+$gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "";
+
+switch( $gAction ) {
+   case 'Login':
+      UserManager('verify');
+      break;
 }
 
 DisplayMain();

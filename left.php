@@ -1,10 +1,10 @@
 <?php   
    if( $gLogoImage ) {
-      echo <<< END
-<a href="$gLogoURL"><img src="/images/$gLogoImage"></a>
+      echo <<<END
+<a href="$gLogoURL"><img src="/images/$gLogoImage"></a>\n
 END;
    }
-   echo "<hr>";
+   echo "<hr>\n";
    
    SessionStuff('start');
    
