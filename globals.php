@@ -22,13 +22,22 @@ global $gAccessNameToLevel;
 global $gAccessNameEnabled;
 global $gAccessLevelEnabled;
 global $gAccessLevels;
+global $gUser;
+global $gUserId;
+global $gUserVerified;
 
 #=================================================
 # Common Library variables
 #=================================================
+global $gLogoImage;
+global $gLogoURL;
+global $gMailSetup;
+global $gMailSite;  # location designator - see local-mail-setup.php
 global $gMessage1;
 global $gMessage2;
-global $gUserVerified;
+global $gSiteName;  # parenthetical on Browser tab
+global $gSupport;
+global $gTitle;
 
 #=================================================
 # General variables
@@ -36,13 +45,8 @@ global $gUserVerified;
 global $gAction;
 global $gDebug;
 global $gFunction;
-global $gLogoImage;
-global $gLogoURL;
 global $gManager;
-global $gSiteName;
 global $gSourceCode;
-global $gSupport;
-global $gTitle;
 global $gTrace;
 
 ?>

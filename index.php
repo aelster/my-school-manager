@@ -25,8 +25,8 @@ $gFunction = array('index.php');
 if( empty($gManager) ) $gManager = 0;
 
 LocalInit();
-
 WriteHeader();
+SessionStuff('start');
 
 if( $gDebug ) {
    echo <<<END
@@ -36,11 +36,22 @@ END;
 }
 
 $gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "";
+$gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
 
 switch( $gAction ) {
    case 'Login':
       UserManager('verify');
       break;
+   
+   case 'Logout':
+      UserManager('logout');
+      break;
+   
+   case 'Update':
+      if( $gFrom == 'UserManagerPassword' ) {
+         UserManager('Update');
+         
+      }
 }
 
 DisplayMain();
