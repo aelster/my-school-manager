@@ -6,13 +6,13 @@ END;
    }
    echo "<hr>\n";
    
-   if( empty( $_SESSION['userid'] ) ) {
-      echo "Please log in";
-   } elseif( $gUserVerified ) {
+   if( $gUserVerified ) {
       echo <<<END
-<input type=button onclick="MyAddAction('Logout');" value=Logout>
-END;
+<input type=button onclick="MyAddAction('Logout');" value=Logout><br>
+<input type=button onclick="MyAddAction('Users');" value=Users><br>
+<input type=button onclick="MyAddAction('Levels');" value=Levels><br>
 
+END;
    }
    echo "<br>Left panel";
 

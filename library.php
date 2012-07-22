@@ -17,10 +17,12 @@ END;
       printf( "<input type=hidden name=%s id=%s>\n", $field, $field );
    }
    
+   if( $gTrace ) Logger('left');
    echo "<div id=left>";
    include( 'left.php' );
    echo "</div>";
    
+   if( $gTrace ) Logger('right');
    echo "<div id=right>";
    include( 'right.php' );
    echo "</div>";
@@ -44,10 +46,38 @@ function LocalInit() {
    if( count( $nqs ) ) $gSourceCode .= '?' . join('&',$nqs );
 }
 
+function PrepareForAction() {
+   include('globals.php');
+   if( $gTrace ) {
+      $gFunction[] = "PrepareForAction()";
+      Logger();
+   }
+   
+   switch( $gAction ) {
+      case 'Login':
+         UserManager('verify');
+         break;
+      
+      case 'Logout':
+         UserManager('logout');
+         break;
+      
+      case 'Update':
+         $area = $_POST['area'];
+         if( $area == 'newpass' ) {
+            UserManager('update');
+         }
+         UserManager('load', $gUserId );
+         break;
+   }
+
+   if( $gTrace ) array_pop( $gFunction );
+}   
+   
 function WriteFooter() {
    include('globals.php');
    if( $gTrace ) {
-      $gFunction[] = "WriteFooter";
+      $gFunction[] = "WriteFooter()";
       Logger();
    }
    

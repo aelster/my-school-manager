@@ -38,6 +38,8 @@ END;
 $gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "";
 $gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
 
+PrepareForAction();
+/*
 switch( $gAction ) {
    case 'Login':
       UserManager('verify');
@@ -53,7 +55,7 @@ switch( $gAction ) {
          
       }
 }
-
+*/
 DisplayMain();
 WriteFooter();
 
