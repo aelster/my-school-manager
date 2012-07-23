@@ -35,7 +35,7 @@ END;
    DumpPostVars();
 }
 
-$gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "";
+$gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "Start";
 $gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
 
 PrepareForAction();

@@ -6,7 +6,7 @@ END;
    }
    echo "<hr>\n";
    
-   if( $gUserVerified ) {
+   if( $gActionLeft == 'menu' ) {
       echo <<<END
 <input type=button onclick="MyAddAction('Logout');" value=Logout><br>
 <input type=button onclick="MyAddAction('Users');" value=Users><br>

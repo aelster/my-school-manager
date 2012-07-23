@@ -43,7 +43,10 @@ global $gTitle;
 # General variables
 #=================================================
 global $gAction;
+global $gActionLeft;
+global $gActionRight;
 global $gDebug;
+global $gFrom;
 global $gFunction;
 global $gManager;
 global $gSourceCode;
