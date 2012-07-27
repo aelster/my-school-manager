@@ -23,6 +23,8 @@ global $gLevelIdToLevel;
 global $gLevelNameToVal;
 global $gLevelToName;
 global $gLevels;  # array of records
+global $gPrivileges;  # array of user_privileges
+global $gUsers;      # array of all users
 global $gUser;    # current user record
 global $gUserEnabled;
 global $gUserId;
