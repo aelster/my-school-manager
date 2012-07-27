@@ -18,6 +18,7 @@ END;
       if( UserManagerAuthorized('control') ) {
          echo "<input type=button onclick=\"MyAddAction('Users');\" value=Users><br>";
          echo "<input type=button onclick=\"MyAddAction('Levels');\" value=Levels><br>";
+         echo "<input type=button onclick=\"MyAddAction('Privileges');\" value=Privileges><br>";
       }
    }
    echo "<br>Left panel";
