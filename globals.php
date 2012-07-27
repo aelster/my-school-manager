@@ -17,12 +17,14 @@ global $gMysqlSuffix;
 #=================================================
 # Control DB variables
 #=================================================
-global $gAccessNameToId;
-global $gAccessNameToLevel;
-global $gAccessNameEnabled;
-global $gAccessLevelEnabled;
-global $gAccessLevels;
-global $gUser;
+global $gLevel;   # level of current user
+global $gLevelEnabled;
+global $gLevelIdToLevel;
+global $gLevelNameToVal;
+global $gLevelToName;
+global $gLevels;  # array of records
+global $gUser;    # current user record
+global $gUserEnabled;
 global $gUserId;
 global $gUserVerified;
 
