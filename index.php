@@ -26,7 +26,6 @@ if( empty($gManager) ) $gManager = 0;
 
 LocalInit();
 WriteHeader();
-SessionStuff('start');
 
 if( $gDebug ) {
    echo <<<END
@@ -34,6 +33,7 @@ if( $gDebug ) {
 END;
    DumpPostVars();
 }
+SessionStuff('start');
 
 $gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "Start";
 $gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
