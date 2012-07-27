@@ -84,6 +84,10 @@ function PrepareForAction() {
          if( $gManager ) $gActionRight = 'login';
          break;
       
+      case 'New Password':
+         if( $gManager ) $gActionRight = 'get-new-password';
+         break;
+      
       case 'Resend':
          if( $gManager ) $gActionRight = 'resend';
          break;
