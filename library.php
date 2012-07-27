@@ -53,13 +53,14 @@ function PrepareForAction() {
       Logger();
    }
    
+   if( $gManager ) $gActionLeft = 'menu';
+   
    switch( $gAction ) {
       case 'Continue':
          if( $gManager && $gFrom == 'UserManagerResend' ) $gActionRight = 'login';
          break;
       
       case 'Levels':
-         $gActionLeft = 'menu';
          $gActionRight = 'levels';
          break;
       
@@ -68,9 +69,8 @@ function PrepareForAction() {
          if( $gUserVerified ) {
             if( $gUser['pwdchanged'] == '0000-00-00 00:00:00' ) {
                $gActionLeft = "blank";
-               $gActionRight = 'get-new-password';
+               $gActionRight = 'newpassword';
             } else {
-               $gActionLeft = 'menu';
                $gActionRight = 'blank';
             }
          } else {
@@ -85,7 +85,11 @@ function PrepareForAction() {
          break;
       
       case 'New Password':
-         if( $gManager ) $gActionRight = 'get-new-password';
+         if( $gManager ) $gActionRight = 'newpassword';
+         break;
+      
+      case 'Privileges':
+         if( $gManager ) $gActionRight = 'privileges';
          break;
       
       case 'Resend':
@@ -105,20 +109,17 @@ function PrepareForAction() {
          switch( $area ) {
             case 'levels':
                UserManager('update');
-               $gActionLeft = 'menu';
                $gActionRight = 'levels';
                break;
             
             case 'newpass':
                UserManager('update');
-               $gActionLeft = 'menu';
                break;
          }
          UserManager('load', $gUserId );
          break;
       
       case 'Users':
-         $gActionLeft = 'menu';
          $gActionRight = 'control';
          break;
    }
