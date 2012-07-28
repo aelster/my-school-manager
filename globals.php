@@ -20,6 +20,7 @@ global $gMysqlSuffix;
 global $gLevel;   # level of current user
 global $gLevelEnabled;
 global $gLevelIdToLevel;
+global $gLevelIdToName;
 global $gLevelNameToVal;
 global $gLevelToName;
 global $gLevels;  # array of records
