@@ -4,10 +4,11 @@
 <a href="$gLogoURL"><img src="/images/$gLogoImage"></a>\n
 END;
    }
-   echo "<hr>\n";
+   echo "<hr>";
    
    if( $gManager ) {
       printf( "User: %s<br>", $gUser['username'] );
+      echo "<hr>";
    }
    
    if( $gActionLeft == 'menu' ) {
