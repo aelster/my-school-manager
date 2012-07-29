@@ -39,23 +39,6 @@ $gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "Start";
 $gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
 
 PrepareForAction();
-/*
-switch( $gAction ) {
-   case 'Login':
-      UserManager('verify');
-      break;
-   
-   case 'Logout':
-      UserManager('logout');
-      break;
-   
-   case 'Update':
-      if( $gFrom == 'UserManagerPassword' ) {
-         UserManager('Update');
-         
-      }
-}
-*/
 DisplayMain();
 WriteFooter();
 

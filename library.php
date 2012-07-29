@@ -114,8 +114,21 @@ function PrepareForAction() {
             
             case 'newpass':
                UserManager('update');
+               $gActionRight = 'blank';
                break;
+            
+            case 'privileges':
+               UserManager('update');
+               $gActionRight = 'privileges';
+               break;
+            
+            case 'users':
+               UserManager('update');
+               $gActionRight = 'control';
+               break;
+            
          }
+         UserManagerInit();
          UserManager('load', $gUserId );
          break;
       
