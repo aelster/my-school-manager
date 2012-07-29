@@ -54,10 +54,15 @@ function PrepareForAction() {
    }
    
    if( $gManager ) $gActionLeft = 'menu';
+   $gActionRight = 'blank';
    
    switch( $gAction ) {
       case 'Continue':
          if( $gManager && $gFrom == 'UserManagerResend' ) $gActionRight = 'login';
+         break;
+      
+      case 'Features':
+         $gActionRight = 'features';
          break;
       
       case 'Levels':
@@ -107,6 +112,11 @@ function PrepareForAction() {
       case 'Update':
          $area = $_POST['area'];
          switch( $area ) {
+            case 'features':
+               UserManager('update');
+               $gActionRight = 'features';
+               break;
+            
             case 'levels':
                UserManager('update');
                $gActionRight = 'levels';

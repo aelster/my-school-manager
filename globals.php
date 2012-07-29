@@ -17,6 +17,7 @@ global $gMysqlSuffix;
 #=================================================
 # Control DB variables
 #=================================================
+global $gFeatures;
 global $gLevel;   # level of current user
 global $gLevelEnabled;
 global $gLevelIdToLevel;
