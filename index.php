@@ -15,7 +15,7 @@ require('local-eedge.php');
 $gDbEEdge = OpenDb();
 
 require( 'local-my-school-manager.php' );
-$gDb = OpenDb();
+#$gDb = OpenDb();
 
 $test = isset( $_REQUEST['bozo'] ) ? 1 : 0;
 $gDebug = $test;
@@ -33,11 +33,12 @@ if( $gDebug ) {
 END;
    DumpPostVars();
 }
-SessionStuff('start');
 
 $gAction = ( isset( $_POST[ "action" ] ) ) ? $_POST[ "action" ] : "Start";
 $gFrom = ( isset( $_POST[ 'from' ] ) ? $_POST[ 'from' ] : "" );
+if( ! empty( $_POST['feature'] ) ) $gFeature = $_POST['feature'];
 
+SessionStuff('start');
 PrepareForAction();
 DisplayMain();
 WriteFooter();

@@ -17,7 +17,8 @@ global $gMysqlSuffix;
 #=================================================
 # Control DB variables
 #=================================================
-global $gFeatures;
+global $gFeature;
+global $gFeatures;   # array of features, e.g. eedge, lunches
 global $gLevel;   # level of current user
 global $gLevelEnabled;
 global $gLevelIdToLevel;

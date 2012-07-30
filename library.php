@@ -12,7 +12,7 @@ function DisplayMain() {
    <form name=fMain method="post" action="$gSourceCode">
 END;
 
-   $hidden_fields = array( 'action', 'area', 'fields', 'func', 'id' );
+   $hidden_fields = array( 'action', 'area', 'feature', 'fields', 'func', 'id' );
    foreach( $hidden_fields as $field ) {
       printf( "<input type=hidden name=%s id=%s>\n", $field, $field );
    }
@@ -53,29 +53,38 @@ function PrepareForAction() {
       Logger();
    }
    
-   if( $gManager ) $gActionLeft = 'menu';
+   if( $gManager && $gUserVerified ) $gActionLeft = 'menu';
    $gActionRight = 'blank';
    
    switch( $gAction ) {
+      case 'eedge':
+         $gActionRight = 'DisplayMain';
+         $gFeature = 'eedge';
+         break;
+      
       case 'Continue':
          if( $gManager && $gFrom == 'UserManagerResend' ) $gActionRight = 'login';
          break;
       
       case 'Features':
          $gActionRight = 'features';
+         $gFeature = "control";
          break;
       
       case 'Levels':
          $gActionRight = 'levels';
+         $gFeature = "control";
          break;
       
       case 'Login':
          UserManager('verify');
+         $gFeature = "control";
          if( $gUserVerified ) {
             if( $gUser['pwdchanged'] == '0000-00-00 00:00:00' ) {
                $gActionLeft = "blank";
                $gActionRight = 'newpassword';
             } else {
+               $gActionLeft = 'menu';
                $gActionRight = 'blank';
             }
          } else {
@@ -86,15 +95,26 @@ function PrepareForAction() {
       
       case 'Logout':
          UserManager('logout');
-         if( $gManager ) $gActionRight = 'login';
+         if( $gManager ) {
+            $gFeature = "control";
+            $gActionLeft = 'blank';
+            $gActionRight = 'login';
+         }
          break;
       
       case 'New Password':
-         if( $gManager ) $gActionRight = 'newpassword';
+         if( $gManager ) {
+            $gActionRight = 'newpassword';
+            $gFeature = "control";
+         }
          break;
       
       case 'Privileges':
          if( $gManager ) $gActionRight = 'privileges';
+         break;
+      
+      case 'Refresh':
+         if( $_POST['feature'] == 'eedge' ) $gActionRight = 'DisplayMain';
          break;
       
       case 'Resend':
