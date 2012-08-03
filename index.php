@@ -5,7 +5,6 @@ include('globals.php');
 include('library.php');
 
 require_once('SiteLoader.php');
-
 SiteLoader('Common');
 
 require('local-control.php');
