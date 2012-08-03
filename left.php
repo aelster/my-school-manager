@@ -1,4 +1,9 @@
 <?php   
+   if( $gTrace ) {
+      $gFunction[] = "left(F:$gFeature, A:$gActionLeft)";
+      Logger();
+   }
+   
    if( $gLogoImage ) {
       echo <<<END
 <a href="$gLogoURL"><img src="/images/$gLogoImage"></a>\n
@@ -34,5 +39,5 @@ END;
       }
    }
    echo "<br>Left panel";
-
+   if( $gTrace ) array_pop( $gFunction );
 ?>

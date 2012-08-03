@@ -19,6 +19,7 @@ global $gMysqlSuffix;
 #=================================================
 global $gFeature;
 global $gFeatures;   # array of features, e.g. eedge, lunches
+global $gGradeIDToLabel;
 global $gLevel;   # level of current user
 global $gLevelEnabled;
 global $gLevelIdToLevel;

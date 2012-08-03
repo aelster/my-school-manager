@@ -17,12 +17,11 @@ END;
       printf( "<input type=hidden name=%s id=%s>\n", $field, $field );
    }
    
-   if( $gTrace ) Logger("left ($gActionLeft):" );
    echo "<div id=left>";
    include( 'left.php' );
    echo "</div>";
    
-   if( $gTrace ) Logger("right ($gActionRight):");
+   Logger("gActionRight: $gActionRight" );
    echo "<div id=right>";
    include( 'right.php' );
    echo "</div>";
@@ -49,124 +48,165 @@ function LocalInit() {
 function PrepareForAction() {
    include('globals.php');
    if( $gTrace ) {
-      $gFunction[] = "PrepareForAction()";
+      $gFunction[] = "PrepareForAction($gFeature)";
       Logger();
    }
    
    if( $gManager && $gUserVerified ) $gActionLeft = 'menu';
    $gActionRight = 'blank';
-   
-   switch( $gAction ) {
-      case 'eedge':
-         $gActionRight = 'DisplayMain';
-         $gFeature = 'eedge';
-         break;
-      
-      case 'Continue':
-         if( $gManager && $gFrom == 'UserManagerResend' ) $gActionRight = 'login';
-         break;
-      
-      case 'Features':
-         $gActionRight = 'features';
-         $gFeature = "control";
-         break;
-      
-      case 'Levels':
-         $gActionRight = 'levels';
-         $gFeature = "control";
-         break;
-      
-      case 'Login':
-         UserManager('verify');
-         $gFeature = "control";
-         if( $gUserVerified ) {
-            if( $gUser['pwdchanged'] == '0000-00-00 00:00:00' ) {
-               $gActionLeft = "blank";
-               $gActionRight = 'newpassword';
-            } else {
-               $gActionLeft = 'menu';
-               $gActionRight = 'blank';
-            }
-         } else {
-            $gActionLeft = "blank";
-            $gActionRight = "login";
-         }
-         break;
-      
-      case 'Logout':
-         UserManager('logout');
-         if( $gManager ) {
-            $gFeature = "control";
-            $gActionLeft = 'blank';
-            $gActionRight = 'login';
-         }
-         break;
-      
-      case 'New Password':
-         if( $gManager ) {
-            $gActionRight = 'newpassword';
-            $gFeature = "control";
-         }
-         break;
-      
-      case 'Privileges':
-         if( $gManager ) $gActionRight = 'privileges';
-         break;
-      
-      case 'Refresh':
-         if( $_POST['feature'] == 'eedge' ) $gActionRight = 'DisplayMain';
-         break;
-      
-      case 'Resend':
-         if( $gManager ) $gActionRight = 'resend';
-         break;
-      
-      case 'Reset Password':
-         if( $gManager ) $gActionRight = 'reset';
-         break;
-      
-      case 'Start':
-         if( $gManager ) $gActionRight = 'login';
-         break;
-      
-      case 'Update':
-         $area = $_POST['area'];
-         switch( $area ) {
-            case 'features':
-               UserManager('update');
-               $gActionRight = 'features';
-               break;
-            
-            case 'levels':
-               UserManager('update');
-               $gActionRight = 'levels';
-               break;
-            
-            case 'newpass':
-               UserManager('update');
-               $gActionRight = 'blank';
-               break;
-            
-            case 'privileges':
-               UserManager('update');
-               $gActionRight = 'privileges';
-               break;
-            
-            case 'users':
-               UserManager('update');
-               $gActionRight = 'control';
-               break;
-            
-         }
-         UserManagerInit();
-         UserManager('load', $gUserId );
-         break;
-      
-      case 'Users':
-         $gActionRight = 'control';
-         break;
-   }
 
+   if( $gFeature == 'control' ) { 
+      switch( $gAction ) {
+         case 'Continue':
+            if( $gManager && $gFrom == 'UserManagerResend' ) $gActionRight = 'login';
+            break;
+         
+         case 'Features':
+            $gActionRight = 'features';
+            $gFeature = "control";
+            break;
+         
+         case 'Levels':
+            $gActionRight = 'levels';
+            $gFeature = "control";
+            break;
+         
+         case 'Login':
+            UserManager('verify');
+            $gFeature = "control";
+            if( $gUserVerified ) {
+               if( $gUser['pwdchanged'] == '0000-00-00 00:00:00' ) {
+                  $gActionLeft = "blank";
+                  $gActionRight = 'newpassword';
+               } else {
+                  $gActionLeft = 'menu';
+                  $gActionRight = 'blank';
+               }
+            } else {
+               $gActionLeft = "blank";
+               $gActionRight = "login";
+            }
+            break;
+         
+         case 'Logout':
+            UserManager('logout');
+            if( $gManager ) {
+               $gFeature = "control";
+               $gActionLeft = 'blank';
+               $gActionRight = 'login';
+            }
+            break;
+         
+         case 'New Password':
+            if( $gManager ) {
+               $gActionRight = 'newpassword';
+               $gFeature = "control";
+            }
+            break;
+         
+         case 'Privileges':
+            if( $gManager ) $gActionRight = 'privileges';
+            break;
+         
+         case 'Resend':
+            if( $gManager ) $gActionRight = 'resend';
+            break;
+         
+         case 'Reset Password':
+            if( $gManager ) $gActionRight = 'reset';
+            break;
+         
+         case 'Start':
+            if( $gManager ) $gActionRight = 'login';
+            break;
+         
+         case 'Update':
+            $area = $_POST['area'];
+            switch( $area ) {
+               case 'features':
+                  UserManager('update');
+                  $gActionRight = 'features';
+                  break;
+               
+               case 'levels':
+                  UserManager('update');
+                  $gActionRight = 'levels';
+                  break;
+               
+               case 'newpass':
+                  UserManager('update');
+                  $gActionRight = 'blank';
+                  break;
+               
+               case 'privileges':
+                  UserManager('update');
+                  $gActionRight = 'privileges';
+                  break;
+               
+               case 'users':
+                  UserManager('update');
+                  $gActionRight = 'control';
+                  break;
+               
+            }
+            UserManagerInit();
+            UserManager('load', $gUserId );
+            break;
+         
+         case 'Users':
+            $gActionRight = 'control';
+            break;
+      }
+   } elseif( $gFeature == 'eedge' ) {
+      switch( $gAction ) {
+         case 'display':
+            $disp_funcs['admin'] = 1;
+            $disp_funcs['address'] = 1;
+            $disp_funcs['email1'] = 1;
+            $disp_funcs['email2'] = 1;
+            $disp_funcs['grades'] = 1;
+            $disp_funcs['parents'] = 1;
+            $disp_funcs['phone'] = 1;
+            $disp_funcs['students'] = 1;
+            $disp_funcs['swaps'] = 1;
+            $func = $_POST['func'];
+            if( ! empty( $disp_funcs[$func] ) ) {
+               $tag = ucfirst($func);
+               $gActionRight = "Display" . $tag;
+            }
+            break;
+            
+         case 'eedge':
+            $gActionRight = 'DisplayMain';
+            $gFeature = 'eedge';
+            break;
+ 
+         case 'Privileges':
+            if( $gManager ) $gActionRight = 'privileges';
+            break;
+         
+         case 'rebuild':
+            $gActionRight = 'DirectorBuild';
+            break;
+         
+         case 'Refresh':
+            $gActionRight = 'DisplayMain';
+            break;
+         
+         case 'Update':
+            $area = $_POST['area'];
+            switch( $area ) {
+               case 'privileges':
+                  UserManager('update');
+                  $gActionRight = 'privileges';
+                  break;
+            }
+            UserManagerInit();
+            UserManager('load', $gUserId );
+            break;
+      }      
+   }
+   
    if( $gTrace ) array_pop( $gFunction );
 }   
    
@@ -209,6 +249,7 @@ END;
    $scripts[] = "/overlib/overlib_hideform.js";
    $scripts[] = "/scripts/MyUtilities.js";
    $scripts[] = "/scripts/sha256.js";
+   $scripts[] = "/scripts/sorttable.js";
    foreach ( $scripts as $file ) {
       echo sprintf( "<script type=\"text/javascript\" src=\"%s\"></script>\n", $file );
    }
