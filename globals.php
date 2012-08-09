@@ -6,6 +6,7 @@
 global $gDb;
 global $gDbControl;
 global $gDbEEdge;
+global $gDbLunches;
 global $gNumRows;
 global $gResult;
 global $gMysqlHost;

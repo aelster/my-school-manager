@@ -1,5 +1,4 @@
 <?php
-
 function DisplayMain() {
    include('globals.php');
    if($gTrace) {
@@ -205,6 +204,29 @@ function PrepareForAction() {
             UserManager('load', $gUserId );
             break;
       }      
+   } elseif( $gFeature == 'lunches' ) {
+      $gDb = $gDbLunches;
+      switch( $gAction ) {
+         case 'lunches':
+            $gActionRight = 'DisplayMain';
+            break;
+
+         case 'Privileges':
+            if( $gManager ) $gActionRight = 'privileges';
+            break;
+
+         case 'Update':
+            $area = $_POST['area'];
+            switch( $area ) {
+               case 'privileges':
+                  UserManager('update');
+                  $gActionRight = 'privileges';
+                  break;
+            }
+            UserManagerInit();
+            UserManager('load', $gUserId );
+            break;
+      }
    }
    
    if( $gTrace ) array_pop( $gFunction );

@@ -1,4 +1,6 @@
 <?php
+include( 'eedge/library.php');
+
 require( "lib/swift_required.php" );
 
 include('globals.php');
@@ -12,6 +14,9 @@ $gDbControl = OpenDb();
 
 require('local-eedge.php');
 $gDbEEdge = OpenDb();
+
+require('local-lunches.php');
+$gDbLunches = OpenDb();
 
 require( 'local-my-school-manager.php' );
 #$gDb = OpenDb();
